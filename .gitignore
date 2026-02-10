@@ -8,13 +8,13 @@
 __pycache__/
 */__pycache__/
 
-# FAISS index files (optional, can regenerate)
+# FAISS index (can regenerate)
 faiss_index/
 
 # Log files
 log.txt
 
-# VS Code or Antigravity IDE settings (optional)
+# IDE settings
 .vscode/
 .antigravity/
 
@@ -22,3 +22,6 @@ log.txt
 *.pyc
 *.pyo
 *.pyd
+
+# Large PDF or data files
+all_pdfs/
