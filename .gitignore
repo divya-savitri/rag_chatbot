@@ -1,27 +1,11 @@
-# Virtual environment
 .venv/
-
-# Environment variables
 .env
-
-# Python cache
 __pycache__/
-*/__pycache__/
-
-# FAISS index (can regenerate)
 faiss_index/
-
-# Log files
 log.txt
-
-# IDE settings
 .vscode/
 .antigravity/
-
-# Python compiled files
 *.pyc
 *.pyo
 *.pyd
-
-# Large PDF or data files
 all_pdfs/
