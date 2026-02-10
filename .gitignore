@@ -1,0 +1,24 @@
+# Virtual environment
+.venv/
+
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*/__pycache__/
+
+# FAISS index files (optional, can regenerate)
+faiss_index/
+
+# Log files
+log.txt
+
+# VS Code or Antigravity IDE settings (optional)
+.vscode/
+.antigravity/
+
+# Python compiled files
+*.pyc
+*.pyo
+*.pyd
