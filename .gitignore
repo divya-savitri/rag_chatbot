@@ -1,11 +1,30 @@
-.venv/
-.env
+# Python
 __pycache__/
-faiss_index/
-log.txt
-.vscode/
-.antigravity/
 *.pyc
 *.pyo
 *.pyd
+
+# Virtual environment
+.venv/
+venv/
+
+# Environment variables
+.env
+
+# Vector databases (REGENERATED from PDFs)
+vectorstore/
+faiss_index/
+ingestion_pipeline/db_faiss/
+
+# PDF data (private data)
 all_pdfs/
+
+# Logs
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
