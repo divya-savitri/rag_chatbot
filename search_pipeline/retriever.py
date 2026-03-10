@@ -1,22 +1,26 @@
-import os
-os.environ["HF_HUB_OFFLINE"] = "1"
-
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
+from utils.logger import logger
 
 
 def get_retriever():
+
+    logger.info("Initializing embeddings model")
+
     embeddings = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
 
-    vectorstore = FAISS.load_local(
+    logger.info("Loading FAISS vector store")
+
+    db = FAISS.load_local(
         "faiss_index",
         embeddings,
         allow_dangerous_deserialization=True
     )
 
-    return vectorstore.as_retriever(
-        search_type="mmr",
-        search_kwargs={"k": 5, "fetch_k": 10}
-    )
+    retriever = db.as_retriever(search_kwargs={"k": 3})
+
+    logger.info("Retriever ready with top-k = 3")
+
+    return retriever

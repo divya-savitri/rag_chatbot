@@ -1,20 +1,17 @@
-from loader import load_pdfs
-from splitter import split_documents
-from embedder import get_embeddings
-from vector_store import create_vector_store
-import logging
+from ingestion_pipeline.loader import load_pdfs
+from ingestion_pipeline.splitter import split_documents
+from ingestion_pipeline.embedder import get_embeddings
+from ingestion_pipeline.vector_store import create_vector_store
+from utils.logger import logger
 import os
 
-LOG_FILE = os.path.join(os.getcwd(), "log.txt")
-
-logging.basicConfig(
-    filename=LOG_FILE,
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
 PDF_FOLDER = "all_pdfs"
 
+
 def run_ingestion():
+
+    logger.info("Starting ingestion pipeline")
+
     print("Loading PDFs...")
     docs = load_pdfs(PDF_FOLDER)
 
@@ -24,10 +21,13 @@ def run_ingestion():
     print("Creating embeddings...")
     embeddings = get_embeddings()
 
-    print("Storing in vector DB...")
+    print("Creating vector database...")
     create_vector_store(chunks, embeddings)
 
-    print("Ingestion completed successfully!")
+    logger.info("Ingestion completed successfully")
+
+    print("✅ Ingestion Completed!")
+
 
 if __name__ == "__main__":
     run_ingestion()

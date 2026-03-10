@@ -1,13 +1,23 @@
-from search_pipeline.rag_chain import answer_question
+import sys
+import os
 
-while True:
-    query = input("\nAsk your question: ")
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-    if query.lower() == "exit":
-        break
+from ingestion_pipeline.vector_store import load_vectorstore
+from search_pipeline.rag_chain import build_rag_chain
 
-    answer = answer_question(query)
 
-    print("\n🤖 Final Answer:\n")
-    print(answer)
-    print("-" * 50)
+vectorstore = load_vectorstore()
+
+rag_chain = build_rag_chain(vectorstore)
+
+
+def run_query(query, history, allow_general=False):
+
+    result = rag_chain({
+        "query": query,
+        "history": history,
+        "allow_general": allow_general
+    })
+
+    return result
